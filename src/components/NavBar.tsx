@@ -1,6 +1,15 @@
-import styles from './NavBar.module.css';
+import styles from "./NavBar.module.css";
+import NavButton from "./NavButton";
 
 export default function NavBar() {
+  const navButtons = [
+    { title: "Ofertas", link: "#" },
+    { title: "Cómo comprar", link: "#" },
+    { title: "Costos y tarifas", link: "#" },
+    { title: "Mis pedidos", link: "#" },
+    { title: "Garantía", link: "#" },
+  ];
+
   return (
     <>
       <header>
@@ -49,31 +58,9 @@ export default function NavBar() {
           </ul>
         </div>
         <nav id="navbar">
-          <li className={styles["nav-li"]}>
-            <a className={styles["nav-a"]} href="#">
-              Ofertas
-            </a>
-          </li>
-          <li className={styles["nav-li"]}>
-            <a className={styles["nav-a"]} href="#">
-              Cómo comprar
-            </a>
-          </li>
-          <li className={styles["nav-li"]}>
-            <a className={styles["nav-a"]} href="#">
-              Costos y tarifas
-            </a>
-          </li>
-          <li className={styles["nav-li"]}>
-            <a className={styles["nav-a"]} href="#">
-              Mis pedidos
-            </a>
-          </li>
-          <li className={styles["nav-li"]}>
-            <a className={styles["nav-a"]} href="#">
-              Garantía
-            </a>
-          </li>
+          {navButtons.map((button, index) => (
+            <NavButton key={index} title={button.title} link={button.link} />
+          ))}
         </nav>
       </header>
     </>
