@@ -7,7 +7,10 @@ export default function Home() {
     return (
         <>
             <NavBar />
-            <Hero />
+            <Hero 
+                firstMessage={'tecnología'}
+                secondMessage={'renovada'}
+            />
 
             <main>
                 <div className={styles["product-container"]} id="products">
