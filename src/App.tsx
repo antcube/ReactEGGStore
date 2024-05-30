@@ -1,35 +1,35 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Details from "./views/Details";
 import Home from "./views/Home";
+import Details from "./views/Details";
 import Cart from "./views/Cart";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import NotFound from "./views/NotFound";
 
 function App() {
-  const router = createBrowserRouter([
+  const browserRouter = createBrowserRouter([
     {
       path: "/",
       element: <Home />,
     },
     {
-      path: "/index.html",
-      element: <Home />,
-    },
-    {
-      path: "/details.html/:id", // Revisar esta ruta
+      // path: "/details/:id", // Revisar esta ruta
+      path: "/details",
       element: < Details />,
     },
     {
-      path: "/cart.html",
+      path: "/cart",
       element: <Cart />,
+    },
+    {
+      path: "/*",
+      element: <NotFound />,
     }
   ]);
 
   return (
     <>
-      <RouterProvider router={router} />
+      <RouterProvider router={browserRouter} />
     </>
   );
 }
 
 export default App;
-
-// 2. Importa createBrowserRouter y RouterProvider de react-router-dom en el componente App y asegurate de tener importados los componentes de vista Home, Cart y Product.

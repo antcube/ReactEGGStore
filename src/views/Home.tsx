@@ -14,7 +14,7 @@ export default function Home() {
 
             <main>
                 <div className={styles["product-container"]} id="products">
-                    <a className={styles["product-card"]} href="./details.html">
+                    <a className={styles["product-card"]} href="./details">
                         <img
                             className={styles["product-img"]}
                             src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"
@@ -40,7 +40,7 @@ export default function Home() {
                             </div>
                         </div>
                     </a>
-                    <a className={styles["product-card"]} href="./details.html">
+                    <a className={styles["product-card"]} href="./details">
                         <img
                             className={styles["product-img"]}
                             src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"
@@ -66,7 +66,7 @@ export default function Home() {
                             </div>
                         </div>
                     </a>
-                    <a className={styles["product-card"]} href="./details.html">
+                    <a className={styles["product-card"]} href="./details">
                         <img
                             className={styles["product-img"]}
                             src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"
@@ -92,7 +92,7 @@ export default function Home() {
                             </div>
                         </div>
                     </a>
-                    <a className={styles["product-card"]} href="./details.html">
+                    <a className={styles["product-card"]} href="./details">
                         <img
                             className={styles["product-img"]}
                             src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"
@@ -118,7 +118,7 @@ export default function Home() {
                             </div>
                         </div>
                     </a>
-                    <a className={styles["product-card"]} href="./details.html">
+                    <a className={styles["product-card"]} href="./details">
                         <img
                             className={styles["product-img"]}
                             src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"
@@ -144,7 +144,7 @@ export default function Home() {
                             </div>
                         </div>
                     </a>
-                    <a className={styles["product-card"]} href="./details.html">
+                    <a className={styles["product-card"]} href="./details">
                         <img
                             className={styles["product-img"]}
                             src="https://i.postimg.cc/kX8PKZpq/ipad2.jpg"

@@ -1,8 +1,13 @@
+import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import styles from "./Details.module.css";
 
 export default function Details() {
+    const { id } = useParams();
+    console.log(id);
+    
+
     return (
         <>
             <NavBar />
