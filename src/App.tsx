@@ -11,8 +11,7 @@ function App() {
       element: <Home />,
     },
     {
-      // path: "/details/:id", // Revisar esta ruta
-      path: "/details",
+      path: "/details/:id",
       element: < Details />,
     },
     {

@@ -2,12 +2,23 @@ import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import styles from "./Details.module.css";
+import products from "./../assets/products";
+import { useEffect, useState } from "react";
 
 export default function Details() {
-    const { id } = useParams();
-    console.log(id);
-    
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const { id } = useParams();
+
+    const [inputValue, setInputValue] = useState(1);
+    
+    const product = products.find((item) => item.id === id);
+
+    const { title, description, price, images, colors } = product;
+    
     return (
         <>
             <NavBar />
@@ -17,26 +28,23 @@ export default function Details() {
                     <div id="details" className={styles["columns-container"]}>
                         <section className={styles["product-images-block"]}>
                             <div className={styles["product-images"]}>
-                                <img
-                                    className={styles["mini-img"]}
-                                    src="https://i.postimg.cc/HxGQcrcp/mock1.jpg"
-                                    alt="MacBook Pro 13'4"
-                                />
-                                <img
-                                    className={styles["mini-img"]}
-                                    src="https://i.postimg.cc/Y91Q1tYQ/mock2.jpg"
-                                    alt="MacBook Pro 13'4"
-                                />
+                                {images.map((image) => (
+                                    <img
+                                        className={styles["mini-img"]}
+                                        src={image}
+                                        alt={title}
+                                    />
+                                ))}
                             </div>
                             <img
                                 className={styles["big-img"]}
                                 id="big-img"
-                                src="https://i.postimg.cc/HxGQcrcp/mock1.jpg"
+                                src={images[0]}
                                 alt="MacBook Pro 13'4"
                             />
                         </section>
                         <div className={styles["product-description-block"]}>
-                            <h1 className={styles["product-title"]}>MacBook Pro 13'4</h1>
+                            <h1 className={styles["product-title"]}>{title}</h1>
                             <form className={styles["product-selector"]}>
                                 <fieldset className={styles["product-fieldset"]}>
                                     <label className={styles["product-label"]} htmlFor="color">
@@ -44,31 +52,18 @@ export default function Details() {
                                     </label>
                                     <select
                                         className={styles["product-select"]}
-                                        // type="text"
-                                        // placeholder="Selecciona un color"
                                         id="color"
                                     >
-                                        <option value="Silver">Silver</option>
+                                        {colors.map((color) => (
+                                            <option value={color}>{color}</option>
+                                        ))}
                                     </select>
                                 </fieldset>
                             </form>
                             <div className={styles["product-description"]}>
                                 <span className={styles["product-label"]}>Descripción</span>
                                 <p>
-                                    Experience the power of creativity with the
-                                    MacBook Pro 13'4. Featuring 8GB of RAM and
-                                    512GB of storage, this laptop provides the
-                                    performance and storage capacity needed for
-                                    demanding tasks. The sleek design in silver
-                                    and space gray adds a touch of
-                                    sophistication. The high-resolution Retina
-                                    display brings your visuals to life, whether
-                                    you're editing photos, creating videos, or
-                                    simply browsing the web. With the latest
-                                    technology and a lightweight build, the
-                                    MacBook Pro 13'4 is the perfect companion
-                                    for professionals and creative individuals
-                                    alike.
+                                    {description}
                                 </p>
                             </div>
                         </div>
@@ -76,7 +71,7 @@ export default function Details() {
                             <div className={styles["checkout-container"]}>
                                 <span className={styles["checkout-total-label"]}>Total:</span>
                                 <h2 id="price" className={styles["checkout-total-price"]}>
-                                    $750000
+                                    {price*inputValue}
                                 </h2>
                                 <p className={styles["checkout-description"]}>
                                     Incluye impuesto PAIS y percepción AFIP.
@@ -115,7 +110,9 @@ export default function Details() {
                                         <input
                                             type="number"
                                             min="1"
-                                            value="1"
+                                            max={product.stock}
+                                            value={inputValue}
+                                            onChange={(e) => setInputValue(+e.target.value)}
                                         />
                                         <button type="button" className={styles["cart-btn"]}>
                                             Añadir al Carrito
