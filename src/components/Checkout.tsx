@@ -4,6 +4,7 @@ import styles from "./Checkout.module.css";
 export default function Checkout({ productFound, quantity, setQuantity }) {
     const units = useRef(1);
 
+    // Se inicializa el carrito con los productos guardados en el localStorage
     const initialCart = () => {
         const localStorageCart = localStorage.getItem('cart');
         return localStorageCart ? JSON.parse(localStorageCart) : [];
@@ -11,6 +12,13 @@ export default function Checkout({ productFound, quantity, setQuantity }) {
 
     const [cart, setCart] = useState(initialCart);
 
+    useEffect( () => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart])
+    // Fin de la inicialización
+
+    
+    // Se actualiza el carrito cuando se modifica el localStorage
     useEffect(() => {
         const StorageChange = () => {
             setCart(initialCart());
@@ -22,11 +30,10 @@ export default function Checkout({ productFound, quantity, setQuantity }) {
             window.removeEventListener('storage', StorageChange);
         };
     }, []);
+    // Fin de la actualización
 
-    useEffect( () => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart])
 
+    // Agrega o elimina un producto del carrito
     const addToCart = (item) => {
         const itemExists = cart.find( each => each.id === item.id );
 
@@ -39,6 +46,8 @@ export default function Checkout({ productFound, quantity, setQuantity }) {
         }
         setButton(!itemExists);
     }
+    // Fin de la función
+
 
     // Revisa si el producto existe para el manejo de los botones
     const isProductInCart = (product) => {
