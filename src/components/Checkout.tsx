@@ -4,34 +4,55 @@ import styles from "./Checkout.module.css";
 export default function Checkout({ productFound, quantity, setQuantity }) {
     const units = useRef(1);
 
-    const [button, setButton] = useState(false);
-
-    // const initialCart = () => {
-    function initialCart() {
+    const initialCart = () => {
         const localStorageCart = localStorage.getItem('cart');
         return localStorageCart ? JSON.parse(localStorageCart) : [];
     }
 
     const [cart, setCart] = useState(initialCart);
 
+    useEffect(() => {
+        const StorageChange = () => {
+            setCart(initialCart());
+        };
+
+        window.addEventListener('storage', StorageChange);
+
+        return () => {
+            window.removeEventListener('storage', StorageChange);
+        };
+    }, []);
+
     useEffect( () => {
-        localStorage.setItem('cart', JSON.stringify(cart))
-        setButton(true)
+        localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart])
 
-    // const addToCart = (item) => {
-    function addToCart(item) {
+    const addToCart = (item) => {
         const itemExists = cart.find( each => each.id === item.id );
 
         if( itemExists) {
             const updateCart = cart.filter(each => each.id !== itemExists.id);
             setCart(updateCart);
         } else {
-            item.quantity = Number(units.current.value);
-            setCart([...cart, item]);
-            setButton(false);
+            const newItem = { ...item, quantity: Number(units.current.value) };
+            setCart([...cart, newItem]);
         }
+        setButton(!itemExists);
     }
+
+    // Revisa si el producto existe para el manejo de los botones
+    const isProductInCart = (product) => {
+        const cart = initialCart();
+        return cart.some(cartProduct => cartProduct.id === product.id);
+    }
+
+    const [button, setButton] = useState(isProductInCart(productFound));
+
+    useEffect(() => {
+        setButton(isProductInCart(productFound));
+        setQuantity(1);
+    }, [productFound]);
+    // Fin de la revisión
 
     return (
         <div className={styles["product-checkout-block"]}>
