@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Checkout.module.css";
 
 export default function Checkout({ productFound, quantity, setQuantity }) {
+    const units = useRef(1);
+
     const [button, setButton] = useState(false);
 
-    const initialCart = () => {
+    // const initialCart = () => {
+    function initialCart() {
         const localStorageCart = localStorage.getItem('cart');
         return localStorageCart ? JSON.parse(localStorageCart) : [];
     }
@@ -13,14 +16,18 @@ export default function Checkout({ productFound, quantity, setQuantity }) {
 
     useEffect( () => {
         localStorage.setItem('cart', JSON.stringify(cart))
+        setButton(true)
     }, [cart])
 
-    const addToCart = (item) => {
-        const itemExists = cart.find( guitar => guitar.id === item.id );
+    // const addToCart = (item) => {
+    function addToCart(item) {
+        const itemExists = cart.find( each => each.id === item.id );
 
         if( itemExists) {
-            setButton(true);
+            const updateCart = cart.filter(each => each.id !== itemExists.id);
+            setCart(updateCart);
         } else {
+            item.quantity = Number(units.current.value);
             setCart([...cart, item]);
             setButton(false);
         }
@@ -64,7 +71,8 @@ export default function Checkout({ productFound, quantity, setQuantity }) {
                             min="1"
                             max={productFound.stock}
                             value={quantity}
-                            onChange={(e) => setQuantity(+e.target.value)}
+                            ref={units}
+                            onChange={() => setQuantity(Number(units.current.value))}
                         />
                         <button
                             type="button"
