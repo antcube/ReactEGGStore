@@ -4,7 +4,7 @@ import NavButton from "./NavButton";
 
 export default function NavBar() {
   const navButtons = [
-    { title: "Ofertas", link: "#" },
+    { title: "Ofertas", link: "ofertas" },
     { title: "Cómo comprar", link: "#" },
     { title: "Costos y tarifas", link: "#" },
     { title: "Mis pedidos", link: "#" },

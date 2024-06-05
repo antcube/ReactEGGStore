@@ -18,9 +18,9 @@ export default function Details() {
 
     const productsOnSale = products.filter((item) => item.onsale === true);
 
-    function getFilteredProductsOnSale() {
-        return productsOnSale.filter(item => item.id !== productFound.id).slice(0, 3);
-    }
+    // function getFilteredProductsOnSale() {
+    //     return productsOnSale.filter(item => item.id !== productFound.id).slice(0, 3);
+    // }
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -75,7 +75,7 @@ export default function Details() {
                             id="product-container"
                             className={styles["product-container"]}
                         >   
-                            {getFilteredProductsOnSale().map(product => (
+                            {productsOnSale.filter(item => item.id !== id).slice(0, 3).map(product => (
                                 < ProductCard
                                     key={product.id}
                                     product={product}

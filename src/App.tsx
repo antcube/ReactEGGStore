@@ -3,6 +3,7 @@ import Details from "./views/Details";
 import Cart from "./views/Cart";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFound from "./views/NotFound";
+import OnSale from "./views/OnSale";
 
 function App() {
   const browserRouter = createBrowserRouter([
@@ -21,6 +22,10 @@ function App() {
     {
       path: "/*",
       element: <NotFound />,
+    },
+    {
+      path: "/ofertas",
+      element: <OnSale />,
     }
   ]);
 
