@@ -2,9 +2,11 @@
 main {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    min-height: 540px;
 }
 
 /* MAIN PRODUCTS */
@@ -13,4 +15,30 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+
+.btnContainer {
+    display: flex;
+}
+.button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.button:disabled {
+    background-color: #CCCCCC;
+    cursor: not-allowed;
+}
+.button:disabled:hover {
+    transform: scale(1);
 }

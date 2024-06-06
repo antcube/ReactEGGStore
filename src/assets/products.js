@@ -49,7 +49,7 @@ const prod3 = new Product(
     "https://i.postimg.cc/7ht8XryZ/sony2.jpg",
   ],
   ["Black", "Silver"],
-  false
+  true
 );
 const prod4 = new Product(
   "S1T2U30",
@@ -76,7 +76,7 @@ const prod5 = new Product(
     "https://i.postimg.cc/8k6zXFrd/gopro2.png",
   ],
   ["Black"],
-  false
+  true
 );
 const prod6 = new Product(
   "V4W5X60",
@@ -89,7 +89,7 @@ const prod6 = new Product(
     "https://i.postimg.cc/WbcbB2MB/gopro12.png",
   ],
   ["Black"],
-  false
+  true
 );
 const prod7 = new Product(
   "Y7Z8A9",
