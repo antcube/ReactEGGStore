@@ -1,4 +1,3 @@
-import styles from "./Home.module.css";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
@@ -13,8 +12,8 @@ export default function Home() {
                 firstMessage={'tecnología'}
                 secondMessage={'renovada'}
             />
-            <main>
-                <div className={styles["product-container"]} id="products">
+            <main className="w-full flex justify-center align-center p-5">
+                <div className="w-[1080px] flex flex-wrap justify-between" id="products">
                     {products.map( product => (
                         < ProductCard
                             key={product.id}
