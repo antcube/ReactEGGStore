@@ -13,7 +13,7 @@ export default function Home() {
                 secondMessage={'renovada'}
             />
             <main className="w-full flex justify-center align-center p-5">
-                <div className="w-[1080px] flex flex-wrap justify-between" id="products">
+                <div className=" flex flex-wrap justify-center sm:justify-evenly xl:justify-between lg:w-[1080px]" id="products">
                     {products.map( product => (
                         < ProductCard
                             key={product.id}

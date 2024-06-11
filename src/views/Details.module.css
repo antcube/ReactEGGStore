@@ -1,10 +1,4 @@
-/* MAIN PRODUCTS */
-.product-container {
-    width: 1080px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
+
 
 /* CARD */
 .product-card {
@@ -70,30 +64,6 @@
 }
 
 /* PRODUCT DETAILS */
-.details-container,
-.sales-block {
-    width: 1080px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.columns-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* SALES */
-.sales-block {
-    margin: 20px 0;
-    justify-content: center;
-}
-
-.sales-title {
-    text-align: center;
-    font-size: 40px;
-}
 
 .cart-section {
     display: flex;
@@ -116,36 +86,4 @@
     padding: 10px;
     margin: 10px;
     background-color: white;
-}
-
-
-/* Error Not Found */
-.not-found-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-}
-.not-found-p {
-    font-size: 20px;
-    font-weight: bold;
-    color: #7525a7;
-}
-.not-found-button {
-    background-color: #ff3b3c;
-    padding: 10px;
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    width: 70%;
-    margin-top: 20px;
-    transition: all 0.3s;
-}
-.not-found-button:hover {
-    background-color: #d63333;
-    transform: scale(1.1);
 }
