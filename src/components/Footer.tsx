@@ -2,8 +2,8 @@ export default function Footer() {
     return (
         <>
             <footer className="min-h-[250px] bg-[#7525a7] flex flex-col items-center">
-                <div id="footer" className="w-[1080px] flex justify-between p-[10px]">
-                    <ul className="w-[170px] p-[10px] list-none">
+                <div className="w-full flex flex-col justify-between items-center p-[10px] sm:flex-row sm:items-start xl:w-[1080px]">
+                    <ul className="w-[170px] p-[10px] list-none text-center lg:text-start">
                         <li className="font-bold pb-5">
                             <a
                                 className="text-white no-underline"
@@ -37,7 +37,7 @@ export default function Footer() {
                             </a>
                         </li>
                     </ul>
-                    <ul className="w-[170px] p-[10px] list-none">
+                    <ul className="w-[170px] p-[10px] list-none text-center lg:text-start">
                         <li className="font-bold pb-5">
                             <a
                                 className="text-white no-underline"
@@ -71,7 +71,7 @@ export default function Footer() {
                             </a>
                         </li>
                     </ul>
-                    <ul className="w-[170px] p-[10px] list-none">
+                    <ul className="w-[170px] p-[10px] list-none text-center lg:text-start">
                         <li className="font-bold pb-5">
                             <a
                                 className="text-white no-underline"
@@ -97,7 +97,7 @@ export default function Footer() {
                             </a>
                         </li>
                     </ul>
-                    <ul className="w-[170px] p-[10px] list-none">
+                    <ul className="w-[170px] p-[10px] list-none text-center lg:text-start">
                         <li className="font-bold pb-5">
                             <a
                                 className="text-white no-underline"
@@ -123,7 +123,7 @@ export default function Footer() {
                             </a>
                         </li>
                     </ul>
-                    <ul className="w-[170px] p-[10px] list-none">
+                    <ul className="w-[170px] p-[10px] list-none text-center lg:text-start">
                         <li className="font-bold pb-5">
                             <a
                                 className="text-white no-underline"
@@ -134,7 +134,7 @@ export default function Footer() {
                         </li>
                     </ul>
                 </div>
-                <div className="w-[1080px] border-t border-[#ba53fb] text-center text-white font-bold py-[30px] box-border">
+                <div className="w-full border-t border-[#ba53fb] text-center text-white font-bold py-[30px] box-border sm:flex-row sm:items-start xl:w-[1080px]">
                     Curso de HTML + CSS 2023
                 </div>
             </footer>
