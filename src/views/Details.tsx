@@ -63,13 +63,13 @@ export default function Details() {
                         </>
                     )}
 
-                    <div className="w-[1080px] flex flex-wrap my-5 justify-center">
-                        <h2 className="text-center text-[40px]">
+                    <div className="w-[1080px] md:flex flex-wrap my-5 justify-center ">
+                        <h2 className="text-center text-[30px] font-bold sm:text-[40px]">
                             Ofertas de la semana
                         </h2>
                         <div
                             id="product-container"
-                            className="w-[1080px] flex flex-wrap justify-between mt-5"
+                            className="flex flex-col justify-between items-center mt-5 sm:flex-row sm:flex-wrap lg:w-full xl:w-[1080px]"
                         >   
                             {productsOnSale.filter(item => item.id !== id).slice(0, 3).map(product => (
                                 < ProductCard

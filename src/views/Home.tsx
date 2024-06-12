@@ -12,8 +12,8 @@ export default function Home() {
                 firstMessage={'tecnología'}
                 secondMessage={'renovada'}
             />
-            <main className="w-full flex justify-center align-center p-5">
-                <div className=" flex flex-wrap justify-center sm:justify-evenly xl:justify-between lg:w-[1080px]" id="products">
+            <main className="w-full flex justify-center align-center p-5 ">
+                <div className=" flex flex-wrap justify-center sm:justify-evenly xl:justify-between xl:w-[1080px]" id="products">
                     {products.map( product => (
                         < ProductCard
                             key={product.id}
