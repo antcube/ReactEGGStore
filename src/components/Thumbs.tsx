@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
+import { Product } from "../types";
  
-export default function Thumbs({productFound}) {
+type ThumbsProps = {
+    productFound: Product
+}
+
+export default function Thumbs({productFound}: ThumbsProps) {
     const [thumb, setThumb] = useState(productFound.images[0]);
     
     useEffect(() => {

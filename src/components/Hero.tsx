@@ -1,5 +1,9 @@
-export default function Hero(props) {
-  const {firstMessage, secondMessage} = props;
+type HeroProps = {
+    firstMessage: string;
+    secondMessage: string;
+};
+
+export default function Hero({ firstMessage, secondMessage }: HeroProps) {
 
   return (
     <>

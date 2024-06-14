@@ -7,16 +7,17 @@ import Description from "../components/Description";
 import products from "../assets/products";
 import { useEffect, useState } from "react";
 import Checkout from "../components/Checkout";
+import type { Product } from "../types";
 
 export default function Details() {
     const { id } = useParams();
 
     const [quantity, setQuantity] = useState(1);
 
-    const productFound = products.find((item) => item.id === id);
+    const productFound: Product = products.find((item) => item.id === id);
 
-    const productsOnSale = products.filter((item) => item.onsale === true);
-
+    const productsOnSale: Product[] = products.filter((item) => item.onsale === true);
+    
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [productFound]);

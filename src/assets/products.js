@@ -1,4 +1,4 @@
-class Product {
+class Product{
   constructor(id, title, description, price, stock, images, colors, onsale) {
     this.id = id;
     this.title = title;

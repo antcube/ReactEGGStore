@@ -1,10 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Dispatch, SetStateAction } from "react";
+import { Product, Cart } from "../types";
 
-export default function Checkout({ productFound, quantity, setQuantity }) {
+type CheckoutProps = {
+    productFound: Product,
+    quantity: number,
+    setQuantity: Dispatch<SetStateAction<number>>
+}
+
+export default function Checkout({ productFound, quantity, setQuantity }: CheckoutProps) {
     const units = useRef(1);
 
     // Se inicializa el carrito con los productos guardados en el localStorage
-    const initialCart = () => {
+    const initialCart = (): Cart[] => {
         const localStorageCart = localStorage.getItem('cart');
         return localStorageCart ? JSON.parse(localStorageCart) : [];
     }
@@ -33,14 +40,14 @@ export default function Checkout({ productFound, quantity, setQuantity }) {
 
 
     // Agrega o elimina un producto del carrito
-    const addToCart = (item) => {
-        const itemExists = cart.find( each => each.id === item.id );
+    const addToCart = (item: Product) => {
+        const itemExists = cart.find( (each: Product) => each.id === item.id );
 
         if( itemExists) {
             const updateCart = cart.filter(each => each.id !== itemExists.id);
             setCart(updateCart);
         } else {
-            const newItem = { ...item, quantity: Number(units.current.value) };
+            const newItem: Cart = { ...item, quantity: Number(units.current.value) };
             setCart([...cart, newItem]);
         }
         setButton(!itemExists);

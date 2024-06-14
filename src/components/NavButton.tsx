@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
 
-export default function NavButton({ title, link }) {
+type NavButtonProps = {
+    title: string,
+    link: string
+}
+
+export default function NavButton({ title, link }: NavButtonProps) {
     return (
         <>
             <li>

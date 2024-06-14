@@ -1,4 +1,10 @@
-export default function Description({ productFound }) {
+import { Product } from "../types";
+
+type DescriptionProps = {
+    productFound: Product
+}
+
+export default function Description({ productFound }: DescriptionProps) {
     return (
         <div className="p-[10px] m-[10px] sm:w-[80%] lg:w-[330px]">
             <h1 className="text-black text-[28px] font-bold break-words ">{productFound.title}</h1>

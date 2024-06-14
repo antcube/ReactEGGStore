@@ -1,7 +1,12 @@
 import styles from "./ProductCard.module.css";
 import { Link } from "react-router-dom"; 
+import type { Product } from "./../types";
 
-export default function ProductCard({product}) {
+type ProductCardProps = {
+    product: Product
+}
+
+export default function ProductCard({product}: ProductCardProps) {
     const {id, title, price, images, colors} = product;
 
     return (
