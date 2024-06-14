@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CartCard from "../components/CartCard";
 import CartResume from "../components/CartResume";
 import Hero from "../components/Hero";
@@ -10,13 +10,15 @@ export default function Cart() {
         return localStorageCart ? JSON.parse(localStorageCart) : [];
     }
 
-    const [cart, setCart] = useState(initialCart);
+    const [productsOnCart, setProductsOnCart] = useState(initialCart);
 
     useEffect( () => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart])
+        localStorage.setItem('cart', JSON.stringify(productsOnCart));
+    }, [productsOnCart])
 
-    const totalAmount = cart.reduce( (acc, product) => acc + product.price, 0);
+    const totalAmount = useMemo( () => {
+        return productsOnCart.reduce( (acc, product) => acc + (product.price * product.quantity), 0);
+    }, [productsOnCart])
 
     return (
         <>
@@ -26,17 +28,18 @@ export default function Cart() {
                 secondMessage={'carrito'}
             />
             
-            <main>
-                {cart.map( product => (
+            <main className="w-[95%] mx-auto">
+                {productsOnCart.map( product => (
                     <CartCard 
                         key={product.id}
                         product={product}
+                        productsOnCart={productsOnCart}
+                        setProductsOnCart={setProductsOnCart}
                     />
                 
                 ))}
                 <CartResume 
                     totalAmount={totalAmount}
-                    setCart={setCart}
                 />
             </main>
         </>

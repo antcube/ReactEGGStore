@@ -1,25 +1,32 @@
-import { useState } from "react";
+import { useRef } from "react";
 
-export default function CartCard({ product, setCart }) {
+export default function CartCard({ product, productsOnCart, setProductsOnCart}) {
     const { id, images, title, colors, description, stock, quantity, price } = product;
 
-    const updateItemQuantity = (e) => {
-        const newQuantity = +e.target.value;
-        
-        const updateItem = { ...product, quantity: newQuantity };
-        setCart(updateItem);
-    }
+    const units = useRef<HTMLInputElement>(quantity);
+
+    const manageUnits = () => {
+        const newUnits = parseInt(units.current.value);
+
+        const newProductsOnCart = productsOnCart.map( product => {
+            if (product.id === id) {
+                product.quantity = newUnits;
+            }
+            return product;
+        });
+        setProductsOnCart(newProductsOnCart);
+    };
 
     const subtotal = price * quantity;
 
     return (
-        <article className="bg-[#f2f2f2] rounded-[5px] p-[30px] m-2.5 h-[220px] break-words flex justify-between w-[680px] items-center">
+        <article className="bg-[#f2f2f2] rounded-2xl px-2.5 py-4 m-2.5 h-[220px] break-words grid grid-cols-4 gap-2 md:p-[30px] md:w-[680px]">
             <img
-                className="w-[100px] h-[100px] rounded-[5px]"
+                className="md:w-[100px] md:h-[100px] rounded-[5px]"
                 src={images[0]}
                 alt={title}
             />
-            <div className="flex flex-col justify-between gap-[2px] w-[340px] h-[100px]">
+            <div className=" col-span-2 md:space-y-2 max-w-64 flex flex-col justify-between md:gap-[2px] sm:w-[340px]">
                 <strong>{title}</strong>
                 <span className="whitespace-nowrap overflow-hidden text-ellipsis">
                     - {colors[0]}
@@ -31,10 +38,12 @@ export default function CartCard({ product, setCart }) {
                     className="w-[70px] h-[40px] rounded-[10px] border-[1px] border-[#eaeaea] p-[5px]"
                     type="number"
                     name="quantity"
+                    defaultValue={quantity}
+                    ref={units}
                     min="1"
                     max={stock}
                     id={id}
-                    onChange={updateItemQuantity}
+                    onChange={manageUnits}
                 />
             </div>
             <strong>AR$ {subtotal}</strong>
