@@ -3,9 +3,10 @@ import CartCard from "../components/CartCard";
 import CartResume from "../components/CartResume";
 import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
+import type { Cart } from "../types";
 
 export default function Cart() {
-    const initialCart = () => {
+    const initialCart = (): Cart[] => {
         const localStorageCart = localStorage.getItem('cart');
         return localStorageCart ? JSON.parse(localStorageCart) : [];
     }

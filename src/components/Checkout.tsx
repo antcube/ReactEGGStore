@@ -8,7 +8,7 @@ type CheckoutProps = {
 }
 
 export default function Checkout({ productFound, quantity, setQuantity }: CheckoutProps) {
-    const units = useRef(1);
+    const units = useRef<HTMLInputElement>(quantity);
 
     // Se inicializa el carrito con los productos guardados en el localStorage
     const initialCart = (): Cart[] => {
@@ -41,13 +41,13 @@ export default function Checkout({ productFound, quantity, setQuantity }: Checko
 
     // Agrega o elimina un producto del carrito
     const addToCart = (item: Product) => {
-        const itemExists = cart.find( (each: Product) => each.id === item.id );
+        const itemExists = cart.find( (each: Cart) => each.id === item.id );
 
         if( itemExists) {
             const updateCart = cart.filter(each => each.id !== itemExists.id);
             setCart(updateCart);
         } else {
-            const newItem: Cart = { ...item, quantity: Number(units.current.value) };
+            const newItem: Cart = { ...item, quantity:  Number(units.current.value) };
             setCart([...cart, newItem]);
         }
         setButton(!itemExists);
@@ -105,11 +105,12 @@ export default function Checkout({ productFound, quantity, setQuantity }: Checko
                         <input
                             className="h-10 text-center rounded-xl border-0 mr-2.5 pr-2.5 pl-5 py-0 box-border sm:w-[62px]"
                             type="number"
-                            min="1"
-                            max={productFound.stock}
+                            name="quantity"
                             value={quantity}
                             ref={units}
-                            onChange={() => setQuantity(Number(units.current.value))}
+                            min="1"
+                            max={productFound.stock}
+                            onChange={() => setQuantity(+units.current.value)}
                         />
                         <button
                             type="button"
