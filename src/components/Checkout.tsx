@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, Dispatch, SetStateAction } from "react";
+import { useEffect, useRef, useState, Dispatch, SetStateAction, useCallback } from "react";
 import { Product, Cart } from "../types";
 
 type CheckoutProps = {
@@ -56,17 +56,17 @@ export default function Checkout({ productFound, quantity, setQuantity }: Checko
 
 
     // Revisa si el producto existe para el manejo de los botones
-    const isProductInCart = (product) => {
+    const isProductInCart = useCallback((product) => {
         const cart = initialCart();
         return cart.some(cartProduct => cartProduct.id === product.id);
-    }
+    }, [])
 
     const [button, setButton] = useState(isProductInCart(productFound));
 
     useEffect(() => {
         setButton(isProductInCart(productFound));
         setQuantity(1);
-    }, [productFound]);
+    }, [isProductInCart, productFound, setQuantity]);
     // Fin de la revisión
 
     return (
