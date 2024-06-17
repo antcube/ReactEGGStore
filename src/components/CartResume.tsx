@@ -1,4 +1,8 @@
-export default function CartResume({ totalAmount }) {
+type CartResumeProps = {
+    totalAmount: number;
+};
+
+export default function CartResume({ totalAmount } : CartResumeProps) {
     return (
         <div className="bg-[#f2f2f2] rounded-[5px] p-[30px] m-2.5 h-[220px] break-words flex justify-between w-[340px] flex-col">
             <div className=" flex-grow-[1] flex flex-col justify-between">

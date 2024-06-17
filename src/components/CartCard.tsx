@@ -1,12 +1,19 @@
-import { useRef } from "react";
+import { useRef, Dispatch, SetStateAction } from "react";
+import type { Cart } from "../types";
 
-export default function CartCard({ product, productsOnCart, setProductsOnCart}) {
+type CartCardProps = {
+    product: Cart,
+    productsOnCart: Cart[];
+    setProductsOnCart: Dispatch<SetStateAction<Cart[]>>
+};
+
+export default function CartCard({ product, productsOnCart, setProductsOnCart}: CartCardProps) {
     const { id, images, title, colors, description, stock, quantity, price } = product;
 
-    const units = useRef<HTMLInputElement>(quantity);
+    const units = useRef<HTMLInputElement>(null);
 
     const manageUnits = () => {
-        const newUnits = parseInt(units.current.value);
+        const newUnits = parseInt(units.current?.value ?? "0");
 
         const newProductsOnCart = productsOnCart.map( product => {
             if (product.id === id) {
@@ -17,7 +24,7 @@ export default function CartCard({ product, productsOnCart, setProductsOnCart}) 
         setProductsOnCart(newProductsOnCart);
     };
 
-    const subtotal = price * quantity;
+    const subtotal: number = price * quantity;
 
     return (
         <article className="bg-[#f2f2f2] rounded-2xl px-2.5 py-4 m-2.5 h-[220px] break-words grid grid-cols-4 gap-2 md:p-[30px] md:w-[680px]">
