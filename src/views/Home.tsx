@@ -5,8 +5,12 @@ import ProductCard from "../components/ProductCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Product } from "./../types";
+import { useSelector } from "react-redux";
 
 export default function Home() {
+    const text = useSelector( state => state.products.text);
+    console.log(text);
+
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
@@ -17,9 +21,14 @@ export default function Home() {
             // .catch( function(error) {
             //     console.log(error);
             // })
-            .then( respuesta => setProducts(respuesta.data))
+            .then( respuesta => {
+                const filterData = respuesta.data.filter(item => 
+                    item.title.toLowerCase().includes(text.toLowerCase().trim())
+                );
+                setProducts(filterData);
+            })
             .catch( error => console.log(error))
-    }, []);
+    }, [text]);
 
     //useEffect(parametro1, parametro2 )
     // parametro1: funcion asincrona que se ejecuta dependiendo el segundo parametro
