@@ -11,6 +11,13 @@ export type Product = {
 
 export type Cart = Product & { quantity: number };
 
+export type stateType = {
+    products: {
+        text: string;
+        totalAmount: number;
+    }
+}
+
 export interface Product2 {
     id: string,
     title: string,

@@ -6,9 +6,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Product } from "./../types";
 import { useSelector } from "react-redux";
+import type { stateType } from "./../types";
 
 export default function Home() {
-    const text = useSelector( state => state.products.text);
+    const text = useSelector( (state: stateType) => state.products.text);
     console.log(text);
 
     const [products, setProducts] = useState<Product[]>([]);

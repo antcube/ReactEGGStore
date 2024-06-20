@@ -1,11 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import CartCard from "../components/CartCard";
 import CartResume from "../components/CartResume";
 import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
 import type { Cart } from "../types";
+import { useDispatch } from "react-redux";
+import { calculateTotal } from "../store/actions/products";
 
 export default function Cart() {
+    const dispatch = useDispatch();
+
     const initialCart = (): Cart[] => {
         const localStorageCart = localStorage.getItem('cart');
         return localStorageCart ? JSON.parse(localStorageCart) : [];
@@ -15,11 +19,8 @@ export default function Cart() {
 
     useEffect( () => {
         localStorage.setItem('cart', JSON.stringify(productsOnCart));
-    }, [productsOnCart])
-
-    const totalAmount = useMemo( () => {
-        return productsOnCart.reduce( (acc, product) => acc + (product.price * product.quantity), 0);
-    }, [productsOnCart])
+        dispatch(calculateTotal({products: productsOnCart}))
+    }, [dispatch, productsOnCart])
 
     return (
         <>
@@ -39,9 +40,7 @@ export default function Cart() {
                     />
                 
                 ))}
-                <CartResume 
-                    totalAmount={totalAmount}
-                />
+                <CartResume/>
             </main>
         </>
     );

@@ -1,8 +1,9 @@
-type CartResumeProps = {
-    totalAmount: number;
-};
+import { useSelector } from "react-redux";
+import type { stateType } from "./../types";
 
-export default function CartResume({ totalAmount } : CartResumeProps) {
+export default function CartResume() {
+    const total = useSelector((store: stateType) => store.products.totalAmount);
+
     return (
         <div className="bg-[#f2f2f2] rounded-[5px] p-[30px] m-2.5 h-[220px] break-words flex justify-between w-[340px] flex-col">
             <div className=" flex-grow-[1] flex flex-col justify-between">
@@ -13,7 +14,7 @@ export default function CartResume({ totalAmount } : CartResumeProps) {
                 </h2>
                 <div className="flex justify-between items-center">
                     <h3>Total</h3>
-                    <strong>${totalAmount}</strong>
+                    <strong>${total}</strong>
                 </div>
                 <small className="pb-2.5">
                     Incluye impuesto PAIS y percepción AFIP.

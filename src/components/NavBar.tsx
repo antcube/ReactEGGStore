@@ -1,10 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import NavButton from "./NavButton";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
 import { captureText } from "../store/actions/products";
+import { useDispatch, useSelector } from "react-redux";
+import type { stateType } from "./../types";
 
 export default function NavBar() {
+    const location = useLocation();
+    const pathname = location.pathname;
+
+    const textStore = useSelector((store: stateType) => store.products.text); 
+
     const text = useRef<HTMLInputElement>();
 
     const dispatch = useDispatch();
@@ -39,14 +45,17 @@ export default function NavBar() {
                         />
                     </Link>
                     <form className="w-full flex items-center flex-grow-[1] justify-center mt-5 sm:w-[33%] sm:mt-0 ">
-                        <input
+                        {pathname === "/" && (
+                            <input
                             className="h-[60px] rounded-[15px] border-none w-full p-[10px] mx-5 text-sm text-center"
                             type="text"
                             placeholder="Search"
                             id="search"
                             ref={text}
+                            defaultValue={textStore}
                             onChange={setText}
                         />
+                        )}
                     </form>
                     <ul className="w-full flex items-center  justify-center list-none mt-5 sm:w-[33%] sm:mt-0 md:flex-grow-[1] md:justify-end">
                         <li id="facebook" className="w-[50px] h-[50px]">
