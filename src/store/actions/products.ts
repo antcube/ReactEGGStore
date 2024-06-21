@@ -8,6 +8,6 @@ const captureText = createAction(
 const calculateTotal = createAction(
     "calculateTotal",
     (obj) => ({ payload: { products: obj.products } })
- );
+);
 
 export { captureText, calculateTotal };

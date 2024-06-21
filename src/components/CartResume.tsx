@@ -1,8 +1,38 @@
 import { useSelector } from "react-redux";
-import type { stateType } from "./../types";
+import type { Cart, stateType } from "./../types";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
-export default function CartResume() {
+type CartResumeProps = {
+    productsOnCart: Cart[];
+}
+
+export default function CartResume({productsOnCart}: CartResumeProps) {
     const total = useSelector((store: stateType) => store.products.totalAmount);
+
+    const MySwal = withReactContent(Swal)
+
+    const handleBuy = () => {
+        MySwal.fire({
+            title: 'Gracias por tu compra!',
+            html: '<p>Tu pedido ha sido realizado con éxito.</p>',
+            icon: 'success',
+            timer: 5000,
+            confirmButtonColor: '#6e7881',
+            allowOutsideClick: false,
+            // customClass: {
+            //     confirmButton: 'btnConfirmSweetAlert',
+            //     cancelButton: 'btnCancelSweetAlert',
+            //     popup: 'popupSweetAlert'
+            // }
+        })
+        .then( result => {
+            if(result.isConfirmed || result.dismiss === Swal.DismissReason.timer) {
+                localStorage.removeItem('cart');
+                window.location.href = '/';
+            }
+        });
+    }
 
     return (
         <div className="bg-[#f2f2f2] rounded-[5px] p-[30px] m-2.5 h-[220px] break-words flex justify-between w-[340px] flex-col">
@@ -24,8 +54,9 @@ export default function CartResume() {
                 className="w-full bg-[#ff3b3c] text-white font-bold border-0 h-10 rounded-[10px] hover:bg-[#ff5151]"
                 id="buy"
                 type="button"
+                onClick={handleBuy}
             >
-                COMPRAR
+                COMPRAR {productsOnCart.length} PRODUCTOS
             </button>
         </div>
     );

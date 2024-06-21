@@ -40,7 +40,9 @@ export default function Cart() {
                     />
                 
                 ))}
-                <CartResume/>
+                <CartResume
+                    productsOnCart={productsOnCart}
+                />
             </main>
         </>
     );
